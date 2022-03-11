@@ -1,0 +1,5 @@
+*/__pycache__
+*.log
+*.tar.gz
+local_*.yaml
+script/version.py
