@@ -19,6 +19,9 @@ DEVICE_MAP = {}
 MQTT_ID = CONFIG['mqtt']['client']['id']
 MQTT_CLIENT = mqtt.Client(client_id=MQTT_ID)
 
+# fix missing roborock s7 in device map
+MIIO_DEVICE_MAP = miio.discovery.DEVICE_MAP
+MIIO_DEVICE_MAP["roborock-vacuum-a15"] = RoborockVacuum
 
 def _add_device_to_device_map(name : str, address : str, token : str, model : str = None):
 
@@ -29,11 +32,11 @@ def _add_device_to_device_map(name : str, address : str, token : str, model : st
         model = common_device.model
 
     # find class for model
-    value = miio.discovery.DEVICE_MAP.get( model.replace('.', '-') )
+    value = MIIO_DEVICE_MAP.get( model.replace('.', '-') )
 
     if value is None:
-        LOG.error("can not find class for model '%s' in miio.discovery.DEVICE_MAP", model)
-        LOG.info("miio.discovery.DEVICE_MAP = %s", miio.discovery.DEVICE_MAP.keys())
+        LOG.error("can not find class for model '%s' in MIIO_DEVICE_MAP", model)
+        LOG.info("MIIO_DEVICE_MAP = %s", MIIO_DEVICE_MAP.keys())
 
     elif inspect.isclass(value):
         device_object = value(address,token)
