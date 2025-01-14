@@ -52,10 +52,13 @@ Communication:
 
 - MQTT -> miio:
     - MQTT broker ---> [ paho-mqtt >>> cmd exec >>> python-miio ] ---> Xiaomi device
-    - Example of MQTT message with command for Xiaomi device:
-        ```
-        miio2mqtt/vacuum/cmd/find
-        ```
+    - Miio2MQTT defines a special topic `cmd` for each Xiaomi device. This sub-topic is used for sending commands to that device.
+    - Example commands:
+      | MQTT topic with incoming data from Xiaomi device | Action | MQTT topic | MQTT topic value |
+      | --------          | -------            | -------            | -------            |
+      | miio2mqtt/vacuum  | Find vacuum cleaner  | miio2mqtt/vacuum/cmd/find | |
+      | miio2mqtt/hum  | Power on humidifier | miio2mqtt/hum/cmd/on | |
+      | miio2mqtt/hum  | Change mode of humidifier | miio2mqtt/hum/cmd/set_property | "mode", 2 |
 
 # TODO List
 
