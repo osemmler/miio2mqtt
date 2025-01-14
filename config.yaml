@@ -45,9 +45,24 @@ mqtt:
 ###
 ### 4) Update 'devices' section below.
 ###
+###
 
 devices:
-  
+
+    # - name
+    #   - custom name of device
+    #   - name must satisfy the rules for Python variables:
+    #     - name must start with a letter or the underscore character
+    #     - name cannot start with a number
+    #     - name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )
+    #     - names are case-sensitive (age, Age and AGE are three different variables)
+    # - ip
+    #   - copied from Xiaomi-cloud-tokens-extractor
+    # - token
+    #   - copied from Xiaomi-cloud-tokens-extractor
+    # - model
+    #   - copied from Xiaomi-cloud-tokens-extractor
+    
   - name: myDeviceName1
     ip: 192.168.1.100
     token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
